@@ -46,4 +46,8 @@ Implementado atalho Há pendências → na tabela de fechamento. Aplica recorte 
 conta bancária, conta contábil, moeda e direção; filtra as duas listas e navega para a pendência.
 Inclui botão Ver todas as contas, foco acessível e destino específico para pendência somente contábil.
 Seleção preservada em revisão da mesma execução e limpa ao importar nova execução.
-Teste de navegador ampliado para esses casos. Resultado desta atualização: aguardando CI.
+Verificação concluída: 33 testes passaram em Python 3.11, 3.12 e 3.13; o Chromium validou o atalho,
+isolamento entre empresa/moeda/conta/direção, ativação pelo teclado, navegação de pendência somente contábil,
+limpeza do recorte, preservação após revisão e limpeza ao importar nova execução.
+CI: https://github.com/andrew-drew-beep/treasury-bridge-core/actions/runs/44825362758
+Código validado: 0983c96116dd702265c05f13ee508dd788eade15. Captura do atalho inspecionada.
