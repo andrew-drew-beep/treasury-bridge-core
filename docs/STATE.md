@@ -57,4 +57,8 @@ README reorganizado com instruções para Windows, instalação de Python, downl
 duplo clique em INICIAR_WINDOWS.bat, alternativa pelo terminal, encerramento, atualização com backup de var,
 tabela de erros e instruções separadas para macOS/Linux e recursos opcionais.
 Iniciador Windows adicionado com detecção de Python compatível, pasta de trabalho correta, abertura do navegador
-e erros mantidos visíveis. Nova verificação windows-launcher no CI; resultado desta entrega aguardando CI.
+e erros mantidos visíveis. Verificação windows-launcher concluída com sucesso: verificação de Python,
+início por arquivo .bat em pasta com espaços, resposta HTTP e carregamento de 20 movimentos fictícios.
+Também passaram os 33 testes em Python 3.11, 3.12 e 3.13 e o teste de navegador.
+CI: https://github.com/andrew-drew-beep/treasury-bridge-core/actions/runs/44826780385
+Código validado: 3c5e7e2908bda581c56d3f78a53cfb509740de8a.
