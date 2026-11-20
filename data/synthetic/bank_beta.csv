@@ -1,0 +1,8 @@
+transaction_id,company,account,currency,booking_date,signed_amount,tax_id,reference,description
+B002,FICTICIA-A,DEMO-01,BRL,2026-11-03,-80.00,DEMO0000000001,,Movimentação inteiramente fictícia
+B005,FICTICIA-A,DEMO-01,BRL,2026-11-03,50.00,,,Movimentação inteiramente fictícia
+B008,FICTICIA-A,DEMO-02,BRL,2026-11-03,30.00,DEMO0000000001,,Movimentação inteiramente fictícia
+B011,FICTICIA-A,DEMO-04,BRL,2026-11-03,40.00,DEMO0000000001,,Movimentação inteiramente fictícia
+B014,FICTICIA-A,DEMO-07,BRL,2026-11-03,70.00,DEMO0000000001,,Movimentação inteiramente fictícia
+B017,FICTICIA-A,DEMO-10,BRL,2026-11-03,100.00,DEMO0000000001,,Movimentação inteiramente fictícia
+B020,FICTICIA-A,DEMO-02,BRL,2026-11-03,-20.00,DEMO0000000001,MISSING-POSTING,Movimentação inteiramente fictícia
