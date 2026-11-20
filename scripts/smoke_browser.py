@@ -52,7 +52,7 @@ def check_scope_isolation_and_ledger_only(page):
     page.locator("#banks").set_input_files(paths[0]);page.locator("#ledger").set_input_files(paths[1])
     page.get_by_role("button",name="Conferir arquivos").click()
     page.get_by_text("Arquivos conferidos.",exact=False).wait_for()
-    page.wait_for_function("document.querySelector('#scopeContext').hidden")
+    page.locator("#scopeContext").wait_for(state="hidden")
     pending_button(page,"A","SHARED","Entrada","DEMO_RECEIPTS","BRL").click()
     assert page.locator("#items article").count()==1
     assert "B-A-IN" in page.locator("#items").inner_text()
