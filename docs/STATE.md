@@ -40,3 +40,10 @@ Leia AGENTS.md e docs/HANDOFF.md. Execute:
 Abra http://127.0.0.1:8765.
 O pacote base não exige dependências; XLSX requer o extra excel.
 Próxima evolução proposta: mapping configurável e seleção explícita de período.
+
+## Atualização de navegação
+Implementado atalho Há pendências → na tabela de fechamento. Aplica recorte completo por empresa,
+conta bancária, conta contábil, moeda e direção; filtra as duas listas e navega para a pendência.
+Inclui botão Ver todas as contas, foco acessível e destino específico para pendência somente contábil.
+Seleção preservada em revisão da mesma execução e limpa ao importar nova execução.
+Teste de navegador ampliado para esses casos. Resultado desta atualização: aguardando CI.

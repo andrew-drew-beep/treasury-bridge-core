@@ -54,6 +54,8 @@ Mesmo diferença zero não libera o grupo se existirem itens sem vínculo ou amb
 1. Abra o cenário. São **20 movimentos bancários, 19 registros contábeis e 12 contas fictícias**.
 2. Observe DEMO-01: os totais fecham, mas CNPJ ausente, referência conflitante e candidatos repetidos mantêm pendências.
 3. Observe a saída de DEMO-02: há **20,00 BRL de diferença**, correspondente ao movimento B020 sem contabilização.
+   Clique em **Há pendências →** para ir diretamente aos itens daquela empresa, conta, moeda e fluxo.
+   O recorte filtra as movimentações e os registros contábeis sem vínculo. Use **Ver todas as contas** para limpar a seleção.
 4. Filtre **Pendências**. B003 e B004 possuem dois candidatos compatíveis; a regra não escolhe sozinha.
 5. Abra B003, selecione L003, informe responsável e justificativa e aprove. Um segundo vínculo ao mesmo L003 será recusado.
 6. Examine B001: CNPJ, valor, escopo e referência são compatíveis. Aprove a sugestão e confira o histórico.

@@ -6,6 +6,14 @@
 3. Execute `python run.py demo`, depois `python run.py serve`; abra http://127.0.0.1:8765.
 4. Siga o roteiro de três minutos no README. Compare o observado com STATE.md.
 
+## Navegação por pendência
+Em Fechamento por conta, Há pendências → seleciona o escopo completo (empresa, conta bancária,
+conta contábil, moeda, direção), ativa o filtro de pendências e leva o foco ao primeiro item.
+Se só houver registros contábeis sem vínculo, o destino é essa lista.
+Ver todas as contas limpa o escopo, mantendo o tipo de filtro escolhido. Nova execução limpa o escopo;
+revisão na mesma execução preserva a seleção. Totais, exportações e regras continuam globais à execução.
+O teste scripts/smoke_browser.py cobre isolamento por escopo, teclado e pendência somente contábil.
+
 ## Onde está cada responsabilidade
 - `domain.py`: moedas, valores exatos, datas e transação normalizada.
 - `ingest.py`: contratos explícitos CSV/XLSX, validação e origem de cada linha.
