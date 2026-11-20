@@ -6,6 +6,13 @@
 3. Execute `python run.py demo`, depois `python run.py serve`; abra http://127.0.0.1:8765.
 4. Siga o roteiro de três minutos no README. Compare o observado com STATE.md.
 
+## Primeiro uso no Windows
+O README começa pelo fluxo do usuário: Python compatível, ZIP completo extraído e INICIAR_WINDOWS.bat.
+O .bat procura py -3 e python e mantém erros visíveis. scripts/start_windows.py verifica a versão e os arquivos,
+usa a pasta raiz como diretório de trabalho, abre o servidor local e tenta abrir o navegador após vincular a porta.
+Não instala dependências nem altera o esquema da base. A flag --check verifica ambiente sem abrir a interface.
+O workflow windows-launcher inicia o programa em uma pasta com espaços e carrega a demonstração via HTTP.
+
 ## Navegação por pendência
 Em Fechamento por conta, Há pendências → seleciona o escopo completo (empresa, conta bancária,
 conta contábil, moeda, direção), ativa o filtro de pendências e leva o foco ao primeiro item.

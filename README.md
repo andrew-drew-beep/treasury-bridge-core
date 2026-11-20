@@ -6,21 +6,119 @@ Prova de conceito em Python para comparar extratos bancários com registros cont
 Identifica diferenças e pendências sem confundir saldo líquido com conciliação.
 Todos os arquivos, empresas, contas e identificadores da demonstração são fictícios.
 
-## Experimente em dois comandos
+## Começar no Windows
 
-Requer Python 3.11 ou superior. A demonstração CSV usa somente a biblioteca padrão.
+**Baixar ZIP → Extrair Tudo → abrir INICIAR_WINDOWS.bat → clicar em Abrir demonstração.**
 
-```bash
-python run.py demo
-python run.py serve
+A ferramenta funciona no seu computador e mostra a interface no navegador.
+Você precisa de **Python 3.11 ou superior** e da pasta completa do projeto extraída.
+Para experimentar os dados fictícios, não precisa instalar bibliotecas, usar Git ou configurar uma chave de API.
+
+### 1. Verificar o Python
+
+Se já conseguiu abrir a ferramenta neste computador, pode passar para a próxima etapa.
+Se ainda não tem Python, instale uma versão estável pelo [site oficial para Windows](https://www.python.org/downloads/windows/).
+Python 3.13 é uma das versões verificadas pelo projeto. A instalação também é explicada na
+[documentação oficial em português](https://docs.python.org/pt-br/3/using/windows.html).
+
+Se quiser conferir a instalação, abra o Prompt de Comando e digite:
+
+```bat
+py --version
 ```
 
-Abra **http://127.0.0.1:8765** e selecione **Abrir demonstração**.
-No Windows, `py` pode substituir `python`. Para outra porta: `python run.py serve --port 8766`.
+O resultado deve ser `Python 3.11` ou superior, por exemplo `Python 3.13.x`.
+Se `py` não for reconhecido, tente `python --version`.
+O iniciador abaixo procura automaticamente uma instalação compatível por esses dois comandos.
 
-O primeiro comando gera os arquivos sintéticos em `data/synthetic/` e os relatórios em `var/report.json` e `var/report.csv`.
-O segundo oferece interface local para importar arquivos, examinar candidatos, aprovar vínculos e manter pendências.
+### 2. Baixar e extrair o projeto
+
+1. Clique em [Baixar o projeto em ZIP](https://github.com/andrew-drew-beep/treasury-bridge-core/archive/refs/heads/main.zip).
+   No GitHub, o mesmo download fica em **Code → Download ZIP**.
+2. Na pasta Downloads, clique com o botão direito no ZIP e escolha **Extrair Tudo**.
+3. Abra a pasta extraída até encontrar **INICIAR_WINDOWS.bat**, **run.py** e a pasta **src** juntos.
+
+Faça a extração completa antes de abrir o programa. Abrir um arquivo de dentro do ZIP não disponibiliza o restante do projeto.
+
+### 3. Abrir a ferramenta
+
+1. Na pasta extraída, dê **dois cliques em INICIAR_WINDOWS.bat**.
+2. Uma janela de terminal deve permanecer aberta. Quando iniciar, ela mostrará:
+
+```text
+Treasury Bridge: http://127.0.0.1:8765
+```
+
+3. O iniciador tenta abrir esse endereço no navegador. Se a página não abrir, acesse **http://127.0.0.1:8765** manualmente.
+4. Na página, clique em **Abrir demonstração**. Os dados fictícios são carregados automaticamente.
+
+**Mantenha a janela do terminal aberta durante o uso.** É ela que mantém a ferramenta funcionando.
+O arquivo `run.py` é a entrada por linha de comando; para iniciar com duplo clique, use o `.bat`.
+O iniciador mostra mensagens de erro e aguarda uma tecla antes de fechar.
+
+### Alternativa pelo terminal
+
+Se preferir usar comandos, abra a pasta onde está `run.py`. Clique na barra de endereço do Explorador de Arquivos,
+apague o caminho, digite `cmd` e pressione Enter. Na janela que abrir, execute:
+
+```bat
+py -3 run.py serve
+```
+
+Se `py` não estiver disponível, use `python run.py serve`.
+Depois abra **http://127.0.0.1:8765** e clique em **Abrir demonstração**.
+Para manter uma janela aberta mesmo quando ocorrer um erro, também é possível digitar na barra de endereço da pasta:
+
+```bat
+cmd /k py -3 run.py serve
+```
+
+### Encerrar e abrir novamente
+
+Para encerrar, volte ao terminal e pressione **Ctrl+C**. No iniciador por duplo clique, o Windows pode pedir
+confirmação para interromper o lote; em seguida a janela pode ser fechada.
+Para usar outra vez, abra **INICIAR_WINDOWS.bat** e acesse a página.
+Fechar apenas a aba do navegador deixa o servidor em execução.
+
+### Atualizar preservando as revisões
+
+1. Encerre o servidor com Ctrl+C.
+2. Faça uma cópia da pasta **var**, dentro do seu projeto: ela contém o histórico salvo.
+3. Baixe e extraia o ZIP atualizado. Copie seu conteúdo para a pasta do projeto existente e aceite substituir os arquivos.
+4. Mantenha a pasta **var** nessa mesma pasta do projeto. O ZIP não inclui essa pasta.
+   Se preferir usar uma pasta nova, copie o seu `var` para dentro dela antes de iniciar.
+5. Abra o iniciador novamente e pressione **Ctrl+F5** no navegador para carregar a interface atualizada.
+
 As revisões ficam em `var/reviews.sqlite`; reabrir a mesma execução preserva seu histórico.
+
+## Se não abrir
+
+| O que aparece ou acontece | Como resolver |
+|---|---|
+| A janela abre e fecha ao clicar em run.py | Abra INICIAR_WINDOWS.bat, ou siga a alternativa pelo terminal acima. |
+| Python não encontrado ou versão anterior a 3.11 | Instale uma versão compatível pelo site oficial. Feche o terminal e tente o iniciador novamente. |
+| O gerenciador Python foi instalado, mas ainda não há uma versão disponível | Siga a orientação do gerenciador. Nele, `py install 3.13` instala uma versão compatível. Esse comando é específico do gerenciador atual. |
+| `can't open file ... run.py` | O terminal está em outra pasta. Abra a pasta que contém run.py e inicie o terminal pela barra de endereço dela. |
+| `No module named treasury_bridge` ou arquivos incompletos | Extraia o ZIP inteiro e mantenha run.py e a pasta src juntos. |
+| Porta 8765 em uso / erro 10048 | Confira se já existe uma janela da ferramenta aberta. Use a página existente ou encerre essa instância com Ctrl+C. |
+| A página diz que não é possível acessar o site | Confira se o terminal permanece aberto e se mostrou o endereço. Use exatamente http://127.0.0.1:8765, com http. |
+| A página abre, mas ainda está igual após atualizar | Confirme que iniciou a pasta atualizada e pressione Ctrl+F5. |
+| A importação XLSX pede uma dependência | Use CSV para a demonstração ou instale o extra Excel, explicado abaixo. |
+
+Se ainda houver erro, copie a mensagem completa do terminal ou faça uma captura dessa janela.
+
+## macOS e Linux
+
+Baixe e extraia o projeto. Abra um terminal dentro da pasta que contém `run.py` e execute:
+
+```bash
+python3 run.py serve
+```
+
+Requer Python 3.11 ou superior. Abra **http://127.0.0.1:8765** e clique em **Abrir demonstração**.
+Mantenha o terminal aberto; Ctrl+C encerra o servidor.
+Para outra porta, use `python3 run.py serve --port 8766` e abra **http://127.0.0.1:8766**.
+O iniciador `.bat` é exclusivo do Windows.
 
 ## O problema de negócio
 
@@ -64,16 +162,34 @@ Mesmo diferença zero não libera o grupo se existirem itens sem vínculo ou amb
 Não altere valores apenas para fazer os totais fecharem. Erros de origem devem ser investigados e corrigidos no sistema responsável;
 a ferramenta serve para localizar e documentar a divergência.
 
-## Instalação opcional e arquivos próprios de teste
+## Recursos opcionais para desenvolvimento
+
+Os comandos abaixo são adicionais. O iniciador e a demonstração CSV já funcionam sem esta instalação.
+
+### Habilitar importação de planilhas Excel
+
+Abra o terminal na pasta do projeto. No Windows:
+
+```bat
+py -3 -m pip install -e ".[excel]"
+```
+
+Se seu computador usa o comando `python`, substitua `py -3` por `python`.
+No macOS/Linux, use `python3`.
+Depois reinicie o servidor. O CSV continua disponível sem a dependência extra.
+
+### Usar pelo terminal e executar os testes
+
+Os exemplos abaixo usam `python`; no Windows também pode ser `py -3`, e no macOS/Linux, `python3`.
 
 ```bash
-python -m pip install -e '.[excel]'
-treasury-bridge serve
+python run.py demo
 python run.py reconcile --bank data/synthetic/bank_alpha.csv data/synthetic/bank_beta.csv data/synthetic/bank_canonical.csv --ledger data/synthetic/ledger.csv --window 2 --out var/conferencia.json
 python -m unittest discover -s tests -v
 ```
 
-Em PowerShell, as aspas simples acima também são aceitas. Sem instalar o extra Excel, use CSV.
+`demo` gera arquivos fictícios em `data/synthetic/` e relatórios em `var/report.json` e `var/report.csv`.
+Esse comando não inicia a interface. Para abrir a tela, use o iniciador ou `serve`.
 Leia [os contratos de entrada](docs/CONTRACTS.md) antes de preparar outros arquivos fictícios.
 
 ## Como a correspondência funciona

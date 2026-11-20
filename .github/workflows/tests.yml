@@ -32,3 +32,42 @@ jobs:
         with:
           name: browser-check
           path: var/browser-check/*.png
+  windows-launcher:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Start from extracted folder and load demo
+        shell: pwsh
+        run: |
+          $testDir = Join-Path $env:RUNNER_TEMP "Treasury demo with spaces"
+          New-Item -ItemType Directory -Force -Path $testDir | Out-Null
+          Copy-Item -Recurse -Force src, scripts, run.py, INICIAR_WINDOWS.bat -Destination $testDir
+          Push-Location $testDir
+          try {
+            cmd /c INICIAR_WINDOWS.bat --check
+            if ($LASTEXITCODE -ne 0) { throw "Launcher self-check failed" }
+          } finally { Pop-Location }
+          $process = Start-Process -FilePath "cmd.exe" -ArgumentList '/c INICIAR_WINDOWS.bat' -WorkingDirectory $testDir -RedirectStandardOutput (Join-Path $testDir "start.log") -RedirectStandardError (Join-Path $testDir "error.log") -PassThru
+          try {
+            $ready = $false
+            for ($attempt = 0; $attempt -lt 60; $attempt++) {
+              try {
+                $response = Invoke-WebRequest -Uri "http://127.0.0.1:8765" -UseBasicParsing -TimeoutSec 1
+                if ($response.StatusCode -eq 200 -and $response.Content.Contains("Treasury Bridge")) { $ready = $true; break }
+              } catch { Start-Sleep -Milliseconds 250 }
+            }
+            if (-not $ready) {
+              Get-Content (Join-Path $testDir "start.log"), (Join-Path $testDir "error.log")
+              throw "Launcher did not start the local application"
+            }
+            $demo = Invoke-RestMethod -Uri "http://127.0.0.1:8765/api/demo" -Method Post -ContentType "application/json" -Body '{}'
+            if ($demo.bank.Count -ne 20) { throw "Demo records missing" }
+            if (-not (Test-Path (Join-Path $testDir "var/reviews.sqlite"))) { throw "Review database missing" }
+            Write-Output "Windows launcher: Python detected, path with spaces handled, server ready and demo loaded."
+          } finally {
+            if (-not $process.HasExited) { taskkill /PID $process.Id /T /F | Out-Null }
+          }

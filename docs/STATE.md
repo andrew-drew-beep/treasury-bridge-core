@@ -51,3 +51,10 @@ isolamento entre empresa/moeda/conta/direção, ativação pelo teclado, navega�
 limpeza do recorte, preservação após revisão e limpeza ao importar nova execução.
 CI: https://github.com/andrew-drew-beep/treasury-bridge-core/actions/runs/44825362758
 Código validado: 0983c96116dd702265c05f13ee508dd788eade15. Captura do atalho inspecionada.
+
+## Primeiro uso e instalação
+README reorganizado com instruções para Windows, instalação de Python, download/extração do ZIP,
+duplo clique em INICIAR_WINDOWS.bat, alternativa pelo terminal, encerramento, atualização com backup de var,
+tabela de erros e instruções separadas para macOS/Linux e recursos opcionais.
+Iniciador Windows adicionado com detecção de Python compatível, pasta de trabalho correta, abertura do navegador
+e erros mantidos visíveis. Nova verificação windows-launcher no CI; resultado desta entrega aguardando CI.
